@@ -1,0 +1,41 @@
+# Core LLM + Orchestration
+langchain
+langgraph
+google-generativeai   # Gemini SDK
+
+# Database
+psycopg2-binary       # Postgres driver
+sqlalchemy            # ORM + schema handling
+langchain-postgres    # LangChain Postgres message history
+
+# API + Networking
+requests              # OpenWeather API calls
+python-dotenv         # load API keys from .env
+
+# Utils
+pydantic              # data validation (locations, weather schema)
+loguru                # logging
+tenacity              # retries for API calls
+
+# Optional but useful
+fastapi               # if you want to expose as API
+uvicorn               # ASGI server for FastAPI
+
+langchain
+langgraph
+langchain-google-genai
+langchain-core
+langchain-community
+faiss-cpu
+pydantic
+python-dotenv
+psycopg
+streamlit
+streamlit-chat
+requests
+pypdf
+uvicorn
+fastapi
+python-multipart
+
+# .\.venv\Scripts\activate 
