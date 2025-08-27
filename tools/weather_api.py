@@ -1,30 +1,51 @@
+import os
 import requests
 from dotenv import load_dotenv
-from utils.logger import logger
 
 load_dotenv()
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
-BASE_URL = "https://api.openweathermap.org/data/2.5"
+import requests
+import os
 
-def fetch_weather(location: str) -> dict:
-    """
-    Fetch current weather + 5-day forecast from OpenWeather API.
-    Uses API key from .env (via config.py).
-    """
-    if not load_dotenv.OPENWEATHER_API_KEY:
-        raise ValueError("❌ OpenWeather API key not set in environment")
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
-    params = {"q": location, "appid": load_dotenv.OPENWEATHER_API_KEY, "units": "metric"}
+def get_coordinates(location: str):
+    """Use OpenWeather Geocoding API to get latitude and longitude for a location string."""
+    url = "http://api.openweathermap.org/geo/1.0/direct"
+    params = {
+        "q": location,
+        "limit": 1,      # get only the top match
+        "appid": API_KEY
+    }
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    data = response.json()
+    
+    if not data:
+        raise ValueError(f"Could not find coordinates for location: {location}")
+    
+    return data[0]["lat"], data[0]["lon"]
 
-    # Current weather
-    r = requests.get(f"{BASE_URL}/weather", params=params)
-    r.raise_for_status()
-    current = r.json()
+def fetch_weather(location: str):
+    """Fetch current weather for a location string using coordinates."""
+    try:
+        lat, lon = get_coordinates(location)
+    except ValueError as e:
+        return {"error": str(e)}
+    
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    params = {
+        "lat": lat,
+        "lon": lon,
+        "appid": API_KEY,
+        "units": "metric"   # or 'imperial'
+    }
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.json()
 
-    # 5-day forecast
-    f = requests.get(f"{BASE_URL}/forecast", params=params)
-    f.raise_for_status()
-    forecast = f.json()
-
-    logger.info(f"✅ Weather data fetched for {location}")
-    return {"current": current, "forecast": forecast}
+# Example usage
+user_input = "newyork"  # whatever the LLM extracted
+weather_data = fetch_weather(user_input)
+print(weather_data)

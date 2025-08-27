@@ -1,0 +1,88 @@
+2025-08-27 18:17:32 | INFO     | tools.location_resolver:resolve_location:48 - 📍 Extracted location via LLM: New York
+2025-08-27 18:18:00 | INFO     | tools.location_resolver:resolve_location:48 - 📍 Extracted location via LLM: 302039
+2025-08-27 22:00:37 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: JAIPUR
+2025-08-27 22:00:37 | INFO     | graph.weather_graph:fetch_from_api:66 - 🌍 Fetching weather from API for JAIPUR
+2025-08-27 22:08:31 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: JAIPUR
+2025-08-27 22:08:31 | INFO     | graph.weather_graph:fetch_from_api:66 - 🌍 Fetching weather from API for JAIPUR
+2025-08-27 22:08:31 | INFO     | graph.weather_graph:fetch_from_api:72 - ✅ Weather data fetched from API: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:08:31 | INFO     | graph.weather_graph:format_answer:85 - 📝 Formatting answer with data: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:08:31 | INFO     | tools.response_formatter:format_response:24 - 📝 Formatting response for postal code: tell me weather inn JAIPUR
+2025-08-27 22:09:50 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: JAIPUR
+2025-08-27 22:09:50 | INFO     | graph.weather_graph:check_cache:53 - 📦 Using DB cache
+2025-08-27 22:09:50 | INFO     | graph.weather_graph:format_answer:85 - 📝 Formatting answer with data: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:09:50 | INFO     | tools.response_formatter:format_response:14 - 📝 Formatting response for city: tell me weather inn JAIPUR
+2025-08-27 22:09:50 | ERROR    | tools.response_formatter:format_response:39 - ⚠️ Error in format_response: 'ChatGoogleGenerativeAI' object has no attribute 'format_weather'
+2025-08-27 22:09:50 | INFO     | graph.weather_graph:format_answer:93 - 🤖 LLM answer: Sorry, I couldn’t format the weather data properly.
+2025-08-27 22:11:46 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: JAIPUR
+2025-08-27 22:11:46 | INFO     | graph.weather_graph:check_cache:53 - 📦 Using DB cache
+2025-08-27 22:11:46 | INFO     | graph.weather_graph:format_answer:85 - 📝 Formatting answer with data: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:11:46 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: tell me weather inn JAIPUR
+2025-08-27 22:11:47 | INFO     | graph.weather_graph:format_answer:93 - 🤖 LLM answer: Okay, here's the weather in Jaipur right now: It's 29.48°C with overcast clouds. The humidity is at 73% and the wind is blowing at 2.53 meters per second.
+2025-08-27 22:15:23 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: Jaipur
+2025-08-27 22:15:23 | INFO     | graph.weather_graph:fetch_from_api:66 - 🌍 Fetching weather from API for Jaipur
+2025-08-27 22:15:23 | INFO     | graph.weather_graph:fetch_from_api:72 - ✅ Weather data fetched from API: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:15:23 | INFO     | graph.weather_graph:format_answer:85 - 📝 Formatting answer with data: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:15:23 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: tell me weather in Jaipur 
+2025-08-27 22:15:24 | INFO     | graph.weather_graph:format_answer:93 - 🤖 LLM answer: Okay, here's the Jaipur weather update! ☀️
+
+The temperature in Jaipur is currently 29.48°C. 🌡️
+It's overcast with clouds. ☁️
+Humidity is at 73%. 💧
+Wind speed is 2.53 m/s. 🌬️
+2025-08-27 22:17:45 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: newyork
+2025-08-27 22:17:45 | INFO     | graph.weather_graph:fetch_from_api:66 - 🌍 Fetching weather from API for newyork
+2025-08-27 22:17:45 | INFO     | graph.weather_graph:fetch_from_api:72 - ✅ Weather data fetched from API: {'error': 'city not found'}
+2025-08-27 22:17:45 | INFO     | graph.weather_graph:format_answer:85 - 📝 Formatting answer with data: {'error': 'city not found'}
+2025-08-27 22:17:45 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: tell me weather in newyork
+2025-08-27 22:17:47 | INFO     | graph.weather_graph:format_answer:93 - 🤖 LLM answer: Unfortunately, I don't have any weather information for New York right now. 😔
+
+I'm showing:
+*   Temperature: N/A 🌡️
+*   Condition: N/A 🌤️
+*   Humidity: N/A% 💧
+*   Wind Speed: N/A m/s 🌬️
+
+I need more data to give you a proper forecast! 
+2025-08-27 22:23:17 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: JAIPUR
+2025-08-27 22:23:17 | INFO     | graph.weather_graph:check_cache:53 - 📦 Using DB cache
+2025-08-27 22:23:17 | INFO     | graph.weather_graph:format_answer:85 - 📝 Formatting answer with data: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:23:17 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: tell me weather inn JAIPUR
+2025-08-27 22:23:18 | INFO     | graph.weather_graph:format_answer:93 - 🤖 LLM answer: Okay, here's the weather in Jaipur! ☀️
+
+🌡️ Temperature: 29.48°C
+☁️ Condition: Overcast clouds
+💧 Humidity: 73%
+💨 Wind: 2.53 m/s
+2025-08-27 22:23:25 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: JPR
+2025-08-27 22:23:25 | INFO     | graph.weather_graph:fetch_from_api:66 - 🌍 Fetching weather from API for JPR
+2025-08-27 22:23:26 | INFO     | graph.weather_graph:fetch_from_api:72 - ✅ Weather data fetched from API: {'coord': {'lon': 104.3603, 'lat': 15.1078}, 'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}], 'base': 'stations', 'main': {'temp': 25.68, 'feels_like': 26.81, 'temp_min': 25.68, 'temp_max': 25.68, 'pressure': 1009, 'humidity': 96, 'sea_level': 1009, 'grnd_level': 994}, 'visibility': 10000, 'wind': {'speed': 3.5, 'deg': 213, 'gust': 8.57}, 'clouds': {'all': 100}, 'dt': 1756313606, 'sys': {'country': 'TH', 'sunrise': 1756248591, 'sunset': 1756293534}, 'timezone': 25200, 'id': 1606239, 'name': 'Si Sa Ket', 'cod': 200}
+2025-08-27 22:23:26 | INFO     | graph.weather_graph:format_answer:85 - 📝 Formatting answer with data: {'coord': {'lon': 104.3603, 'lat': 15.1078}, 'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}], 'base': 'stations', 'main': {'temp': 25.68, 'feels_like': 26.81, 'temp_min': 25.68, 'temp_max': 25.68, 'pressure': 1009, 'humidity': 96, 'sea_level': 1009, 'grnd_level': 994}, 'visibility': 10000, 'wind': {'speed': 3.5, 'deg': 213, 'gust': 8.57}, 'clouds': {'all': 100}, 'dt': 1756313606, 'sys': {'country': 'TH', 'sunrise': 1756248591, 'sunset': 1756293534}, 'timezone': 25200, 'id': 1606239, 'name': 'Si Sa Ket', 'cod': 200}
+2025-08-27 22:23:26 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: tell me weather inn JPR
+2025-08-27 22:23:28 | INFO     | graph.weather_graph:format_answer:93 - 🤖 LLM answer: Okay, here's the weather update for JPR: ☀️
+
+Unfortunately, I don't have any specific weather information for JPR right now. 😔
+
+*   Temperature: N/A 🌡️
+*   Condition: N/A 🌤️
+*   Humidity: N/A% 💧
+*   Wind Speed: N/A m/s 💨
+
+I'll try to get you an update soon! 😊
+2025-08-27 22:23:37 | WARNING  | tools.location_resolver:resolve_location:47 - ❌ Could not detect location.
+2025-08-27 22:23:37 | ERROR    | graph.weather_graph:extract_location:27 - ❌ Could not detect a location
+2025-08-27 22:23:37 | ERROR    | graph.weather_graph:format_answer:79 - ❌ Error in state: Could not detect a location.
+2025-08-27 22:29:28 | WARNING  | tools.location_resolver:resolve_location:47 - ❌ Could not detect location.
+2025-08-27 22:29:28 | ERROR    | graph.weather_graph:extract_location:68 - ❌ Could not detect a location
+2025-08-27 22:29:28 | ERROR    | graph.weather_graph:format_answer:115 - ❌ Error in state: Could not detect a location.
+2025-08-27 22:29:47 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: JAIPUR
+2025-08-27 22:29:47 | INFO     | graph.weather_graph:check_cache:91 - 📦 Using DB cache
+2025-08-27 22:29:47 | INFO     | graph.weather_graph:format_answer:120 - 📝 Formatting answer with data: {'city': 'Jaipur', 'country': 'IN', 'temperature': 29.48, 'humidity': 73, 'description': 'overcast clouds', 'wind_speed': 2.53}
+2025-08-27 22:29:47 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: tell me weather inn JAIPUR
+2025-08-27 22:29:48 | INFO     | graph.weather_graph:format_answer:127 - 🤖 LLM answer: Okay, here's the Jaipur weather update:
+
+☀️ Jaipur, IN: 29.48°C
+☁️ Condition: Overcast clouds
+💧 Humidity: 73%
+💨 Wind: 2.53 m/s
+2025-08-27 22:31:25 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: New york
+2025-08-27 22:31:25 | INFO     | graph.weather_graph:fetch_from_api:101 - 🌍 Fetching weather from API for New york

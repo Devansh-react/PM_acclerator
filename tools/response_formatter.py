@@ -1,29 +1,51 @@
-from dotenv import load_dotenv
+from utils.logger import logger
 
 def format_response(user_query: str, weather_data: dict, llm):
     """
-    Ask Gemini LLM to generate a detailed, human-friendly weather summary.
-    Uses Gemini API key from .env via config.py.
+    Format weather response using LLM if available, else fallback.
     """
+    try:
+        logger.info(f"📝 Formatting response for city: {user_query}")
 
-    prompt = f"""
-    You are a helpful weather assistant. Your task is to generate a clear, conversational weather report for the user.
+        city = weather_data.get("city", "Unknown")
+        country = weather_data.get("country", "")
+        temp = weather_data.get("temperature", "N/A")
+        desc = weather_data.get("description", "N/A")
+        humidity = weather_data.get("humidity", "N/A")
+        wind = weather_data.get("wind_speed", "N/A")
 
-    Instructions:
-    1. Start with a friendly greeting.
-    2. Summarize the user's query: "{user_query}".
-    3. Provide the current weather:
-       - Include temperature, weather condition, humidity, and wind speed if available.
-    4. Present a 5-day forecast:
-       - For each day, list high and low temperatures, weather condition, and any notable events (rain, storms, etc.).
-    5. Use bullet points or short paragraphs for readability.
-    6. Avoid technical jargon; keep the language simple and engaging.
-    7. End with a helpful tip or suggestion based on the forecast (e.g., "Don't forget your umbrella!").
+        base_response = (
+            f"Weather in {city}, {country}:\n"
+            f"- Temperature: {temp}°C\n"
+            f"- Condition: {desc}\n"
+            f"- Humidity: {humidity}%\n"
+            f"- Wind Speed: {wind} m/s"
+        )
 
-    Weather Data:
-    - Current: {weather_data.get('current')}
-    - Forecast: {weather_data.get('forecast')}
-    """
+        if llm:
+            try:
+                prompt = f"""
+                User asked: "{user_query}"
 
-    response = llm.invoke(prompt)
-    return response.content if hasattr(response, "content") else str(response)
+                Here is the weather data:
+                - City: {city}, {country}
+                - Temperature: {temp}°C
+                - Condition: {desc}
+                - Humidity: {humidity}%
+                - Wind Speed: {wind} m/s
+
+                Format the answer in a **friendly, clear style** with emojis and line breaks.  
+                Keep it short and readable, like a weather app update.
+                """
+
+                response = llm.invoke(prompt)  # ✅ works with ChatGoogleGenerativeAI
+                return response.content if hasattr(response, "content") else str(response)
+            except Exception as e:
+                logger.error(f"⚠️ LLM formatting failed: {e}")
+                return base_response
+
+        return base_response
+
+    except Exception as e:
+        logger.error(f"⚠️ Error in format_response: {e}")
+        return "Sorry, I couldn’t format the weather data properly."
