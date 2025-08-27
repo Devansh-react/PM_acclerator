@@ -15,7 +15,7 @@ def get_coordinates(location: str):
     url = "http://api.openweathermap.org/geo/1.0/direct"
     params = {
         "q": location,
-        "limit": 1,      # get only the top match
+        "limit": 1,   
         "appid": API_KEY
     }
     response = requests.get(url, params=params)
@@ -39,13 +39,13 @@ def fetch_weather(location: str):
         "lat": lat,
         "lon": lon,
         "appid": API_KEY,
-        "units": "metric"   # or 'imperial'
+        "units": "metric"
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
     return response.json()
 
-# Example usage
-user_input = "newyork"  # whatever the LLM extracted
+
+user_input = "newyork"  
 weather_data = fetch_weather(user_input)
 print(weather_data)

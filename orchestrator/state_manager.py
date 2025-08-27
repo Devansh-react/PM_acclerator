@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 class StateManager:
     def __init__(self):
-        # Stores weather data as { location: (timestamp, weather_data_dict) }
+       
         self.session_state = {}
 
     def has_recent_weather(self, location: str, expiry: timedelta) -> bool:

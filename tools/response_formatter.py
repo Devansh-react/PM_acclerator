@@ -35,7 +35,7 @@ def format_response(user_query: str, weather_data: dict, llm):
                 - Wind Speed: {wind} m/s
 
                 Format the answer in a **friendly, clear style** with emojis and line breaks.  
-                Keep it short and readable, like a weather app update.
+                Keep it short and readable, like  weather app update.
                 """
 
                 response = llm.invoke(prompt)  # ✅ works with ChatGoogleGenerativeAI
@@ -47,5 +47,5 @@ def format_response(user_query: str, weather_data: dict, llm):
         return base_response
 
     except Exception as e:
-        logger.error(f"⚠️ Error in format_response: {e}")
+        logger.error(f"Error in format_response: {e}")
         return "Sorry, I couldn’t format the weather data properly."

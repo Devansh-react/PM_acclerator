@@ -47,9 +47,9 @@ def resolve_location(query: str, llm) -> str | None:
             logger.warning("❌ Could not detect location.")
             return None
 
-        logger.info(f"📍 Extracted location via LLM: {location}")
+        logger.info(f"Extracted location via LLM: {location}")
         return location
 
     except Exception as e:
-        logger.error(f"⚠️ Location resolver failed: {e}")
+        logger.error(f"Location resolver failed: {e}")
         return None

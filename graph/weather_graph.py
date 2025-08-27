@@ -16,11 +16,9 @@ load_dotenv()
 # In-memory session cache
 state_manager = StateManager()
 CACHE_EXPIRY = timedelta(minutes=30)
-API_KEY = "YOUR_OPENWEATHER_API_KEY"  # Or from env: os.getenv("OPENWEATHER_API_KEY")
+API_KEY = "YOUR_OPENWEATHER_API_KEY"  
 
-# --------------------------
-# Generalized weather functions
-# --------------------------
+
 def get_coordinates(location: str):
     """Resolve location string to latitude/longitude using OpenWeather Geocoding API."""
     # Direct geocoding
