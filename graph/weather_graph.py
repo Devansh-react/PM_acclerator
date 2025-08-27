@@ -13,7 +13,7 @@ import re
 
 load_dotenv()
 
-# In-memory session cache
+
 state_manager = StateManager()
 CACHE_EXPIRY = timedelta(minutes=30)
 API_KEY = "YOUR_OPENWEATHER_API_KEY"  
@@ -29,7 +29,7 @@ def get_coordinates(location: str):
     if data:
         return data[0]["lat"], data[0]["lon"]
 
-    # ZIP code fallback
+
     url_zip = "http://api.openweathermap.org/geo/1.0/zip"
     params_zip = {"zip": location, "appid": API_KEY}
     response_zip = requests.get(url_zip, params=params_zip)
@@ -37,7 +37,6 @@ def get_coordinates(location: str):
     if "lat" in data_zip and "lon" in data_zip:
         return data_zip["lat"], data_zip["lon"]
 
-    # Coordinates fallback: "lat, lon"
     match = re.match(r"^\s*([-\d\.]+)\s*,\s*([-\d\.]+)\s*$", location)
     if match:
         return float(match.group(1)), float(match.group(2))
@@ -56,9 +55,6 @@ def fetch_weather(location: str):
     response.raise_for_status()
     return response.json()
 
-# --------------------------
-# NODE DEFINITIONS
-# --------------------------
 def extract_location(state: WeatherState) -> WeatherState:
     query = state.get("user_query")
     location = resolve_location(query, state["llm"])
@@ -96,35 +92,35 @@ def fetch_from_api(state: WeatherState) -> WeatherState:
         return state
     
     location = state["location"]
-    logger.info(f"🌍 Fetching weather from API for {location}")
+    logger.info(f" Fetching weather from API for {location}")
     data = fetch_weather(location)
     
     if "error" in data:
-        logger.error(f"❌ {data['error']}")
+        logger.error(f" {data['error']}")
         return {**state, "error": data["error"]}
 
     save_weather_cache(location, data)
     state_manager.update_weather(location, data)
-    logger.info(f"✅ Weather data fetched from API: {data}")
+    logger.info(f" Weather data fetched from API: {data}")
     return {**state, "weather_data": data}
 
 def format_answer(state: WeatherState) -> WeatherState:
     if state.get("error"):
-        logger.error(f"❌ Error in state: {state['error']}")
+        logger.error(f" Error in state: {state['error']}")
         return {**state, "final_answer": state["error"]}
 
     query = state["user_query"]
     data = state["weather_data"]
-    logger.info(f"📝 Formatting answer with data: {data}")
+    logger.info(f" Formatting answer with data: {data}")
 
     if not data:
         return {**state, "final_answer": "No weather data available."}
 
     llm_inst = state["llm"]
     answer = format_response(query, data, llm_inst)
-    logger.info(f"🤖 LLM answer: {answer}")
+    logger.info(f"LLM answer: {answer}")
 
-    return {**state, "final_answer": answer or "I couldn’t generate a response."}
+    return {**state, "final_answer": answer or "couldn’t generate a response."}
 
 # --------------------------
 # GRAPH DEFINITION
@@ -150,26 +146,3 @@ def build_weather_graph():
     workflow.add_edge("format_answer", END)
 
     return workflow.compile()
-
-# --------------------------
-# RUNNER
-# --------------------------
-if __name__ == "__main__":
-    graph = build_weather_graph()
-
-    while True:
-        query = input("\nAsk about the weather (or 'quit'): ")
-        if query.lower() in ["quit", "exit"]:
-            break
-
-        state: WeatherState = {
-            "user_query": query,
-            "llm": llm,
-            "location": "",
-            "weather_data": None,
-            "from_cache": False,
-            "final_answer": "",
-            "error": ""
-        }
-        result = graph.invoke(state)
-        print("\n🤖:", result["final_answer"])
