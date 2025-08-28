@@ -86,3 +86,11 @@ I'll try to get you an update soon! 😊
 💨 Wind: 2.53 m/s
 2025-08-27 22:31:25 | INFO     | tools.location_resolver:resolve_location:50 - 📍 Extracted location via LLM: New york
 2025-08-27 22:31:25 | INFO     | graph.weather_graph:fetch_from_api:101 - 🌍 Fetching weather from API for New york
+2025-08-28 01:07:03 | INFO     | tools.location_resolver:resolve_location:50 - Extracted location via LLM: jaipur
+2025-08-28 01:07:03 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: jaipur 
+2025-08-28 01:07:46 | INFO     | tools.location_resolver:resolve_location:50 - Extracted location via LLM: ajmer
+2025-08-28 01:07:47 | INFO     | tools.response_formatter:format_response:8 - 📝 Formatting response for city: ajmer 
+2025-08-28 01:09:45 | INFO     | tools.location_resolver:resolve_location:50 - Extracted location via LLM: Ajmer
+2025-08-28 01:09:56 | INFO     | tools.location_resolver:resolve_location:50 - Extracted location via LLM: jaipur
+2025-08-28 01:10:02 | INFO     | tools.location_resolver:resolve_location:50 - Extracted location via LLM: new york
+2025-08-28 01:11:18 | INFO     | tools.location_resolver:resolve_location:50 - Extracted location via LLM: jaipur

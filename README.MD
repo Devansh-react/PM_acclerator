@@ -141,7 +141,7 @@ Ask about the weather (or 'quit'): Weather near Eiffel Tower
 ## 🔄 How It Differs From a Normal API Call
 
 * **Normal websites**: User inputs city → API returns raw JSON → User reads it.
-* **Your bot**:
+* ** bot**:
 
   * Understands freeform queries using **LLM**
   * Resolves ambiguous inputs, ZIP codes, coordinates, or landmarks
@@ -157,9 +157,3 @@ Ask about the weather (or 'quit'): Weather near Eiffel Tower
 * Deploy as **web app, Telegram/Discord bot, or voice assistant**.
 
 ---
-
-## ⚠️ Notes
-
-* Keep your **API key secure** (don’t commit `.env`).
-* The bot depends on **LLM** extraction for location—accuracy improves with a better model or fine-tuned prompts.
-* Handles most location inputs but extremely ambiguous queries may fail.
